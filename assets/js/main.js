@@ -253,7 +253,8 @@
 function sgenerator() {
 	let airport = String(document.getElementById("airport").value);
 	let atxcat = String(document.getElementById("atxcat").value);
-	let yearmonth = String(document.getElementById("yearmonth").value);
+	let yearmonth = new Date(document.getElementById("yearmonth").value);
+	let date = String([String(yearmonth.getFullYear()).slice(-2), ('0' + (yearmonth.getMonth() + 1)).slice(-2)].join(''));
 	let fpath = "\"" + String(document.getElementById("fpath").value) + "\"";
 	let fout = "\"" + String(document.getElementById("fout").value) + "\"";
 	let pdecod = String(document.getElementById("pdecod").value);
@@ -273,7 +274,7 @@ function sgenerator() {
 		alert("Year Month field is empty!");
 		return;
 	} else {
-		let shcode = "-a " + airport + " -c " + atxcat + " -r " + region + " -m " + yearmonth + " -f " + fpath + " -o " + fout + " -n " + pdecod + " -e " + fextension + " -u " + upload + " -l " + localonly + " -F " + fregion;
+		let shcode = "-a " + airport + " -c " + atxcat + " -r " + region + " -m " + date + " -f " + fpath + " -o " + fout + " -n " + pdecod + " -e " + fextension + " -u " + upload + " -l " + localonly + " -F " + fregion;
 		document.getElementById("demo").innerHTML = shcode;
 	}
 
