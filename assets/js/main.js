@@ -255,8 +255,8 @@ function sgenerator() {
 	let atxcat = String(document.getElementById("atxcat").value);
 	let yearmonth = new Date(document.getElementById("yearmonth").value);
 	let date = String([String(yearmonth.getFullYear()).slice(-2), ('0' + (yearmonth.getMonth() + 1)).slice(-2)].join(''));
-	let fpath = "\"" + String(document.getElementById("fpath").value) + "\"";
-	let fout = "\"" + String(document.getElementById("fout").value) + "\"";
+	let fpath = "\"" + String(document.getElementById("fpath").value).replace("\\", "/") + "\"";
+	let fout = "\"" + String(document.getElementById("fout").value).replace("\\", "/") + "\"";
 	let pdecod = String(document.getElementById("pdecod").value);
 	let region = String(document.getElementById("region").value);
 	let fextension = String(document.getElementById("fextension").value);
@@ -270,11 +270,15 @@ function sgenerator() {
 	if (region == "") {
 		region = airport;
 	}
+	if ((fpath.includes(".")) || (fout.includes("."))){
+		alert("Eres subnormal, ya te dije que la ruta no podía contener puntos!!");
+		return;
+	}
 	if (yearmonth == "") {
 		alert("Year Month field is empty!");
 		return;
 	} else {
-		let shcode = "-a " + airport + " -c " + atxcat + " -r " + region + " -m " + date + " -f " + fpath + " -o " + fout + " -n " + pdecod + " -e " + fextension + " -u " + upload + " -l " + localonly + " -F " + fregion;
+		let shcode = "sh script.sh" + " -a " + airport + " -c " + atxcat + " -r " + region + " -m " + date + " -f " + fpath + " -o " + fout + " -n " + pdecod + " -e " + fextension + " -u " + upload + " -l " + localonly + " -F " + fregion;
 		document.getElementById("demo").innerHTML = shcode;
 	}
 
