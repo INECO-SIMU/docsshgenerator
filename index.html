@@ -57,10 +57,10 @@
 						<strong>Optional Options</strong><br>
 						<ul id="optional">
 						       <li><strong>-e</strong> File extension, in most cases it would be gps. By default this value is gps</li>
-						       <li><strong>-f</strong> Asterix files path. By default this value is C:/Users/ADMINI~1/AppData/Local/Temp</li>
+						       <li><strong>-f</strong> Asterix files path. By default this value is C:/Users/ADMINI~1/AppData/Local/Temp.<br>(Don't need to change the direction of the slashes)</li>
 						       <li><strong>-h</strong> Sows help menu</li>
 						       <li><strong>-l</strong> Only uses local files indicated with the -f param. By default this value is false</li>
-						       <li><strong>-o</strong> Output directory. By default this value is C:/Users/ADMINI~1/AppData/Local/Temp</li>
+						       <li><strong>-o</strong> Output directory. By default this value is C:/Users/ADMINI~1/AppData/Local/Temp.<br>(Don't need to change the direction of the slashes)</li>
 						       <li><strong>-n</strong> Limit the number of decodifications to a given number. By default this value is 6</li>
 						       <li><strong>-r</strong> Region/Airport to download the files. By default this take the value of the Airport param -a</li>
 						       <li><strong>-u</strong> If true, files will be stored in S3 an not in local storage. By default value is true</li>
@@ -126,6 +126,13 @@
 							<input type="checkbox" id="localonly" value="false" onclick="$(this).attr('value', this.checked ? true : false)">
 							<span class="slider round"></span>
 						</label><br>
+						
+						<label for="fname">TCAS</label>
+						<label class="switch">
+							<input type="checkbox" id="tcas" value="false" onclick="$(this).attr('value', this.checked ? true : false)">
+							<span class="slider round"></span>
+						</label><br>
+
 					  </form> 
 					  <a href="#contact"><input type="button" value="Generate" onclick="sgenerator()"></a>
 				</div>
