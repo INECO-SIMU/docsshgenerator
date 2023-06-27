@@ -272,11 +272,11 @@ function sgenerator() {
 	if (region == "") {
 		region = airport;
 	}
-	if ((fpath.includes(".")) || (fout.includes("."))){
+	if ((fpath.includes(".")) || (fout.includes("."))) {
 		alert("Eres subnormal, ya te dije que la ruta no podía contener puntos!!");
 		return;
 	}
-	if (yearmonth == "") {
+	if (yearmonth.toString() === "Invalid Date") {
 		alert("Year Month field is empty!");
 		return;
 	} else {
