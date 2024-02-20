@@ -264,6 +264,7 @@ function sgenerator() {
 	let fregion = String(document.getElementById("fregion").value);
 	let localonly = String(document.getElementById("localonly").value);
 	let tcas = document.getElementById("tcas").checked;
+	let checkcsv = String(document.getElementById("checkcsv").value);
 
 	if (airport == "") {
 		alert("Airport field is empty!");
@@ -281,7 +282,7 @@ function sgenerator() {
 		return;
 	} else {
 		let scriptName = tcas ? "sh script_TCAS.sh" : "sh script.sh";
-		let shcode = scriptName + " -a " + airport + " -c " + atxcat + " -r " + region + " -m " + date + " -f " + fpath + " -o " + fout + " -n " + pdecod + " -e " + fextension + " -u " + upload + " -l " + localonly + " -F " + fregion;
+		let shcode = scriptName + " -a " + airport + " -c " + atxcat + " -r " + region + " -m " + date + " -f " + fpath + " -o " + fout + " -n " + pdecod + " -e " + fextension + " -u " + upload + " -l " + localonly + " -F " + fregion + " -C " + checkcsv;
 		document.getElementById("demo").innerHTML = shcode;
 	}
 }
