@@ -47,7 +47,7 @@
 						<h2>Usage</h2>
 					</header>
 					<p id="help">
-						Usage: script.sh -e extension -f filepath -o outputdir -n numlimit -c cat -a airport -m yearmonth -r region -u upload -F filterRegion <br><br>
+						Usage: script.sh -e extension -f filepath -o outputdir -n numlimit -c cat -a airport -m yearmonth -r region -u upload -F filterRegion -C Checkcsv <br><br>
 						<strong>Mandatory Options</strong><br>
 						<ul id="mandatory">
 							<li><strong>-a</strong> Airport OACI code</li>
@@ -65,6 +65,7 @@
 						       <li><strong>-r</strong> Region/Airport to download the files. By default this take the value of the Airport param -a</li>
 						       <li><strong>-u</strong> If true, files will be stored in S3 an not in local storage. By default value is true</li>
 						       <li><strong>-F</strong> If true, files will be filtered by airport. By default value is true</li>
+						       <li><strong>-C</strong> If true, csv decoded files will be downloaded from S3 if exists before decoding. By default value is false"</li>
 						</ul><br> 
 					</p>
 				</div>
@@ -121,34 +122,70 @@
 						<label for="fname">Parallel decodifications:</label>
 						<input type="number" id="pdecod" name="pdecod" value=6><br>
 						
-						<label for="fname">Upload</label>
-						<label class="switch">
-							<input type="checkbox" id="upload" value="true" checked onclick="$(this).attr('value', this.checked ? true : false)">
-							<span class="slider round"></span>
-						</label><br>
+						<!-- Three columns layout for checkboxes and sliders -->
+						<div class="column">
+							<label for="fname">Upload</label>
+							<label class="switch">
+								<input type="checkbox" id="upload" value="true" checked onclick="$(this).attr('value', this.checked ? true : false)">
+								<span class="slider round"></span>
+							</label>
+						</div>
 
-						<label for="fname">Filter</label>
-						<label class="switch">
-							<input type="checkbox" id="fregion" value="true" checked onclick="$(this).attr('value', this.checked ? true : false)">
-							<span class="slider round"></span>
-						</label><br>
+						<div class="column">
+							<label for="fname">Filter</label>
+							<label class="switch">
+								<input type="checkbox" id="fregion" value="true" checked onclick="$(this).attr('value', this.checked ? true : false)">
+								<span class="slider round"></span>
+							</label>
+						</div>
 
-						<label for="fname">Local files only</label>
-						<label class="switch">
-							<input type="checkbox" id="localonly" value="false" onclick="$(this).attr('value', this.checked ? true : false)">
-							<span class="slider round"></span>
-						</label><br>
+						<div class="column">
+							<label for="fname">Local files only</label>
+							<label class="switch">
+								<input type="checkbox" id="localonly" value="false" onclick="$(this).attr('value', this.checked ? true : false)">
+								<span class="slider round"></span>
+							</label>
+						</div>
+
+						<div class="column">
+							<label for="fname">TCAS</label>
+							<label class="switch">
+								<input type="checkbox" id="tcas" value="false" onclick="$(this).attr('value', this.checked ? true : false)">
+								<span class="slider round"></span>
+							</label>
+						</div>
+
+						<div class="column">
+							<label for="fname">Check_csv</label>
+							<label class="switch">
+								<input type="checkbox" id="checkcsv" value="false" onclick="$(this).attr('value', this.checked ? true : false)">
+								<span class="slider round"></span>
+							</label>
+						</div>
 						
-						<label for="fname">TCAS</label>
-						<label class="switch">
-							<input type="checkbox" id="tcas" value="false" onclick="$(this).attr('value', this.checked ? true : false)">
-							<span class="slider round"></span>
-						</label><br>
+						<!-- Botón Generate debajo de las columnas -->
+						<div style="clear: both;"></div>
+						<a href="#contact" class="generate-button"><input type="button" value="Generate" onclick="sgenerator()"></a>
 
-					  </form> 
-					  <a href="#contact"><input type="button" value="Generate" onclick="sgenerator()"></a>
-				</div>
-			</section>
+					</form> 
+			  	</div>
+		  	</section>
+		
+		<style>
+			/* Style for the three columns */
+			.column {
+				float: left;
+				width: 33.33%;
+				box-sizing: border-box;
+			}
+
+			/* Estilo para el botón Generate */
+			.generate-button {
+				float: right;
+				margin-top: 40px; /* Ajusta este valor según sea necesario */
+				display: block;
+			}
+		</style>
 
 		<!-- Contact -->
 			<section id="contact" class="main style3 secondary">
